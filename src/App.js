@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import AddPizzaForm from "./components/AddPizzaForm";
+import PizzaList from "./components/PizzaList";
+import "./App.scss";
+import RestaurantList from "./components/RestaurantList";
+import Ingredients from "./components/Ingredients";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { modeChangeDark, modeChangeLight } from "./store/modes/action";
+import { selectMode } from "./store/modes/selectors";
 
 function App() {
+  const [mode, setMode] = useState("light");
+  const dispatch = useDispatch();
+  const darkmode = useSelector(selectMode);
+
+  function modeButtonClicked() {
+    if (mode === "light") {
+      setMode("dark");
+      dispatch(modeChangeDark("dark"));
+    } else {
+      setMode("light");
+      dispatch(modeChangeLight("light"));
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={darkmode ? "AppDark" : "AppLight"}>
+      <div>
+        <button onClick={modeButtonClicked}>
+          {darkmode ? "Dark Mode" : "Light Mode"}
+        </button>
+        <PizzaList />
+        <AddPizzaForm />
+        <RestaurantList />
+        <Ingredients />
+      </div>
     </div>
   );
 }

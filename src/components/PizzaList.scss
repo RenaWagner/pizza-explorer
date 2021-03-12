@@ -1,0 +1,47 @@
+.pizzaListContainer {
+  padding: 50px 50px;
+}
+
+.pizzaContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pizzaList {
+  margin-top: 50px;
+  margin-right: 50px;
+  min-height: 300px;
+  list-style: none;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.toggle {
+  display: block;
+  height: 2rem;
+  line-height: 2rem;
+  width: 2rem;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  font-size: 1.5rem;
+  color: black;
+
+  border: none;
+  border-radius: 999px;
+  background: white;
+  &.fav {
+    color: red;
+  }
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.5rem;
+  color: white;
+}
